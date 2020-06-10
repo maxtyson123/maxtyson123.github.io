@@ -3,18 +3,23 @@
 <html>
    <head>
       <title>Loading...</title>
-      <meta http-equiv = "refresh" content = "2; url = https://maxtyson123.github.io/Downloads/Website/Redirect.html" />
+      <meta http-equiv = "refresh" content = "15; url = https://maxtyson123.github.io/Downloads/Website/Redirect.html" />
    </head>
+   <style>
+   
+div.ex2 {
+  max-width:365px;
+}
+</style>
    <body>
-      <h1>Typewriter</h1>
+     
 
-<button onclick="typeWriter()">Click me</button>
-
+<div class = "ex2"
 <p id="demo"></p>
 
 <script>
 var i = 0;
-var txt = 'Fetching database.......................................COMPLETE';
+var txt = 'Fetching database.......................................COMPLETE     loading  database.......................................COMPLETE Fetching page info.......................................COMPLETE loading page info .......................................COMPLETE';
 var speed = 50;
 
 function typeWriter() {
@@ -24,6 +29,7 @@ function typeWriter() {
     setTimeout(typeWriter, speed);
   }
 }
+window.onload = typeWriter;
 </script>
 
    </body>
