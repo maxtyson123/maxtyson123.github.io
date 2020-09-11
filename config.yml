@@ -1,0 +1,16 @@
+theme: 
+title: Max Inc
+url: maxtyson123.github.io
+exclude:
+  - .idea/
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore
+  - '*.iml'
+github:
+  is_project_page: true
+  repository_url: https://github.com/maxtyson123/maxtyson123.github.io
+downloads:
+  tar_url: "https://nexus.fearnixx.de/repository/jeakbot-dist/jeakbot-1.0.0-rc.5.tar.gz"
+  #zip_url: "https://nexus.fearnixx.de/repository/jeakbot-dist/jeakbot-1.0.0-rc.5.zip"
+google_analytics: "G-KBBNLC9SVY"
