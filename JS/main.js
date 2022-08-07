@@ -1,6 +1,7 @@
 var i = 0;
 var activeWord = 0;
 var words = ['Unity','Website','App','Python',"Game","C#","JS","HTML","CSS","SQl","PHP"];
+var randDone = [];
 var speed = 200;
 var complete = true;
 var reverse = false;
@@ -9,12 +10,10 @@ projects: [
   {
     name : "SunnyLand",
     image : "IMAGES/sunnyland.png",
-    type : "Game"
-  },
-  {
-    name : "Para",
-    image : "IMAGES/time.png",
-    type : "Game"
+    type : "Game",
+    source: "None",
+    time: "",
+    download: "",
   }
 ]
 }
@@ -52,7 +51,17 @@ function typeWriter() {
  }else{ 
   typediv.innerHTML = "|";
   i = 0;
-  activeWord = Math.floor(Math.random() * words.length);
+  randDone.push(activeWord);
+  if(randDone.length == words.length){
+    randDone.length = 0;
+    console.log("Reset");
+  }
+  function newWord(){
+    activeWord = Math.floor(Math.random() * words.length);
+      if(randDone.includes(activeWord))
+        newWord();
+  }
+  newWord();
   complete = false;
   speed = 200;
  }
@@ -96,10 +105,36 @@ function setupProjs(){
       var numbertext = document.createElement("div");
       numbertext.className = "numbertext";
       numbertext.innerHTML = (x+1)+" / "+projs.projects.length
+      var modalTitle = document.createElement("div");
+      modalTitle.className = "modalTitle";
+      modalTitle.innerHTML = project.name;
+      var modalInfo = document.createElement("div");
+      modalInfo.className = "modalInfo";
+      var infokey = Object.keys(project)
+      var infodat = Object.values(project)
+      for(y = 0; y < infokey.length; y++){
+        if(infokey[y] == "name" || infokey[y] == "image")
+          continue;
+          var divInfo = document.createElement("div");
+          divInfo.style.clear = "both"
+        var infoText = document.createElement("p");
+        infoText.innerHTML = infokey[y].toUpperCase()+": ";
+        infoText.style.float = "left";
+        var infoText2 = document.createElement("p");
+        infoText2.innerHTML = infodat[y];
+        infoText2.style.float = "right";
+
+        divInfo.appendChild(infoText);
+        divInfo.appendChild(infoText2);
+        modalInfo.appendChild(divInfo);
+      }
       var img = document.createElement("img");
       img.src = project.image;
       img.style.width = "100%";
     mySlides.appendChild(numbertext);
+    mySlides.appendChild(modalTitle);
+    mySlides.appendChild(modalInfo);
+
     mySlides.appendChild(img);
     modalSlides.appendChild(mySlides);
     var column = document.createElement("div");
@@ -154,9 +189,55 @@ function showSlides(n) {
   captionText.innerHTML = dots[slideIndex-1].alt;
 }
 
+
+
+function gotoSite(site){
+  setCookie("checked","true",1);
+  setTimeout (function(){
+    window.location = site;
+  },300)
+ 
+}
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  let user = getCookie("username");
+  if (user != "") {
+    alert("Welcome again " + user);
+  } else {
+    user = prompt("Please enter your name:", "");
+    if (user != "" && user != null) {
+      setCookie("username", user, 365);
+    }
+  }
+}
+
 window.onload = function(){
 
-    typeWriter();
-    setupProjs();
-    showSlides(slideIndex);
+  if(getCookie("checked") != "true" && !window.location.href.includes("nav.html"))
+    window.location = "nav.html";
+  typeWriter();
+  setupProjs();
+  showSlides(slideIndex);
 }
