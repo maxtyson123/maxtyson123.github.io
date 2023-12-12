@@ -9,6 +9,9 @@ interface HeaderProps {
     subtitle: string;
     data: project[];
 }
+
+//TODO: Inner height shoulndt be used and neither should be bounding client rect
+
 export default function Header({title, subtitle, data}: HeaderProps) {
 
     const runOnce = useRef(false)
@@ -170,8 +173,10 @@ export default function Header({title, subtitle, data}: HeaderProps) {
             <div className={styles.header}>
                 <div className={styles.headerContent}>
                     <h1 className={styles.title}>{title}</h1>
-                    <h2 className={styles.subtitle}>{subtitle}</h2>
-                    <button className={styles.button}>See More</button>
+                    <div className={styles.subtitle}>
+                        <h2 >{subtitle}</h2>
+                        <button>See More</button>
+                    </div>
                 </div>
             </div>
         </>

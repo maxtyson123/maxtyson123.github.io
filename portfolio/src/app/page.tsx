@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Header from "@/components/header";
 import {project} from "@/lib/projects";
+import {MouseBlob} from "@/components/blob";
 
 export default function Home() {
 
@@ -23,10 +24,41 @@ export default function Home() {
 
     return(
         <>
+            <MouseBlob/>
+
             {/* Main Header */}
             <Header title={"Max Tyson"} subtitle={"Websites & More!"} data={data}/>
 
             {/* Websites */}
+            <div>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+                <p>blah</p>
+            </div>
 
             {/* Games */}
 
