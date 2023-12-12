@@ -1,0 +1,42 @@
+{
+  "name": "Rongoa",
+  "version": "1.0.0",
+  "type": "Website",
+  "displayLink": "https://rongoa.stream/",
+  "sourceLink": "https://github.com/maxtyson123/13_DGT_WEBSITE",
+  "description": "A website to dynamically display information about various New Zealand plants and their usages",
+  "author": "Max Tyson",
+  "license": "BSD-3-Clause license",
+  "mainImage": "homepage.png",
+  "images": [
+      {
+      "name": "Home Page",
+      "description": "First page the user sees when they visit the website",
+      "link": "homepage.png"
+      },
+      {
+        "name": "Featured Plants",
+        "description": "A list of plants that are featured on the website",
+        "link": "featured.png"
+      },
+      {
+        "name": "Stats",
+        "description": "Displaying the site stats",
+        "link": "stats.png"
+      },
+      {
+        "name": "Search",
+        "description": "Site search",
+        "link": "search.png"
+      },{
+        "name": "Index",
+        "description": "Index of all the plants",
+        "link": "index.png"
+      },
+      {
+        "name": "User Details",
+        "description": "User details page",
+        "link": "userdetails.png"
+      }
+  ]
+}

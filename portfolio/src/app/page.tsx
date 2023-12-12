@@ -7,7 +7,7 @@ export default function Home() {
     const getData = () => {
 
         const projects: project[] = []
-        const projectFiles = ["template"]
+        const projectFiles = ["rongoa"]
 
         // Loop through each project file loading the data
         projectFiles.forEach((file) => {

@@ -11,15 +11,24 @@ interface HeaderProps {
 }
 export default function Header({title, subtitle, data}: HeaderProps) {
 
-    const [images, setImages] = useState<null | string[]>([])
-
-
     const runOnce = useRef(false)
 
     useEffect(() => {
 
         if(runOnce.current) return
         runOnce.current = true
+
+        // Get the images
+        let imageURLs: string[] = []
+        data.forEach((project) => {
+            for (let i = 0; i < project.images.length; i++) {
+                const image = project.images[i];
+                imageURLs.push('/media/images/' + project.name + '/' + image.link)
+            }
+        })
+
+        // Shuffle the images
+        imageURLs = imageURLs.sort(() => Math.random() - 0.5)
 
         // Get the divs containing the images
         const collumns = Array.from( document.getElementsByClassName(styles.collumn))
@@ -33,6 +42,8 @@ export default function Header({title, subtitle, data}: HeaderProps) {
 
         const imagesStartingPos: number[][] = [[], [], [], [], [], [], [], []]
 
+        let currentImage = 0
+
         // Loop through the divs and add the images
         for (let i = 0; i < collumns.length; i++) {
             const collumn = collumns[i];
@@ -40,7 +51,12 @@ export default function Header({title, subtitle, data}: HeaderProps) {
 
                 // Create the image
                 const image = document.createElement("img")
-                image.src = "https://www.wikihow.com/images/thumb/4/4b/Personal_color_test.png/728px-Personal_color_test.png"
+                image.src = imageURLs[currentImage]
+
+                // Increment the current image
+                currentImage++
+                if (currentImage >= imageURLs.length) currentImage = 0
+
                 collumn.appendChild(image)
 
                 // Add the padding to the image
@@ -55,7 +71,7 @@ export default function Header({title, subtitle, data}: HeaderProps) {
             }
         }
 
-        const speed = 10
+        const speed = 30
         const animate = () => {
 
             // Loop through the collumns
@@ -104,7 +120,7 @@ export default function Header({title, subtitle, data}: HeaderProps) {
         }
 
         // Animate the images
-        let anim = setInterval(animate, speed)
+        let anim: NodeJS.Timeout | null = setInterval(animate, speed)
 
         // Handle pausing on p
         document.addEventListener("keydown", (e) => {
@@ -150,7 +166,7 @@ export default function Header({title, subtitle, data}: HeaderProps) {
 
             </div>
 
-            {/* Content
+            {/* Content  */}
             <div className={styles.header}>
                 <div className={styles.headerContent}>
                     <h1 className={styles.title}>{title}</h1>
@@ -158,7 +174,6 @@ export default function Header({title, subtitle, data}: HeaderProps) {
                     <button className={styles.button}>See More</button>
                 </div>
             </div>
-            */}
         </>
     )
 }
