@@ -1,0 +1,10 @@
+.break{
+    padding-top: 95vh;
+    pointer-events: none !important;
+    opacity: 0;
+}
+
+.content{
+    background: black;
+    color: white;
+}

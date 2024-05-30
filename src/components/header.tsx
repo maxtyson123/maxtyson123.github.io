@@ -26,7 +26,7 @@ export default function Header({title, subtitle, data}: HeaderProps) {
         data.forEach((project) => {
             for (let i = 0; i < project.images.length; i++) {
                 const image = project.images[i];
-                imageURLs.push('/media/images/' + project.name + '/' + image.link)
+                imageURLs.push('/media/images/' + project.name.toLowerCase() + '/' + image.link)
             }
         })
 
@@ -40,8 +40,7 @@ export default function Header({title, subtitle, data}: HeaderProps) {
         const columnsHeight = collumns[0].getBoundingClientRect().height
         const padding = 0.03 * columnsHeight
         const imageHeight = 100 + padding
-        const numberOfImages = Math.ceil(columnsHeight / imageHeight) + 1 // +1 to make sure there is always enough images
-        const adujustedPadding = (0.03 * columnsHeight) + (0.9 * numberOfImages)
+        const numberOfImages = Math.ceil(columnsHeight / imageHeight)
 
         const imagesStartingPos: number[][] = [[], [], [], [], [], [], [], []]
 
@@ -63,18 +62,18 @@ export default function Header({title, subtitle, data}: HeaderProps) {
                 collumn.appendChild(image)
 
                 // Add the padding to the image
-                image.style.marginTop = adujustedPadding + "px"
+                image.style.marginTop = padding + "px"
                 imagesStartingPos[i].push(image.getBoundingClientRect().top)
 
                 // If this is the last image and we are going down translate it to top of the screen
                    if (j === numberOfImages - 1 && collumn.classList.contains("down")) {
-                       image.style.transform = `translateY(${- imagesStartingPos[i][j] - imageHeight + adujustedPadding}px)`
+                       image.style.transform = `translateY(${- imagesStartingPos[i][j] - imageHeight + padding}px)`
                    }
 
             }
         }
 
-        const speed = 30
+        const speed = 25
         const animate = () => {
 
             // Loop through the collumns
@@ -105,7 +104,7 @@ export default function Header({title, subtitle, data}: HeaderProps) {
                     const imagePos = image.getBoundingClientRect().top
 
                     // If the image is out of the screen, reset it
-                    if (isDown && imagePos > window.innerHeight) {
+                    if (isDown && imagePos > columnsHeight) {
                         // Calculate  the translation needed to move from the starting pos to the bottom of the screen
                         const translation = - imagesStartingPos[h][i] - imageHeight
                         image.style.transform = `translateY(${translation}px)`
@@ -113,7 +112,7 @@ export default function Header({title, subtitle, data}: HeaderProps) {
 
                     } else if (imagePos < -imageHeight) {
                         // Calculate  the translation needed to move from the starting pos to the bottom of the screen
-                        const translation = window.innerHeight - imagesStartingPos[h][i]
+                        const translation = columnsHeight - imagesStartingPos[h][i]
                         image.style.transform = `translateY(${translation}px)`
 
                     }
@@ -145,38 +144,36 @@ export default function Header({title, subtitle, data}: HeaderProps) {
         })
 
 
-
-
-
-
     }, [])
 
     return(
         <>
 
-            {/* Background */}
-            <div className={styles.background}>
+            <div className={styles.headerContianer}>
 
-                <div className={styles.collumn}></div>
-                <div className={styles.collumn + " down"}></div>
-                <div className={styles.collumn}></div>
-                <div className={styles.collumn + " down"}></div>
-                <div className={styles.collumn}></div>
-                <div className={styles.collumn + " down"}></div>
-                <div className={styles.collumn}></div>
-                <div className={styles.collumn + " down"}></div>
-
-
-            </div>
-
-            {/* Content  */}
-            <div className={styles.header}>
-                <div className={styles.headerContent}>
-                    <h1 className={styles.title}>{title}</h1>
-                    <div className={styles.subtitle}>
-                        <h2 >{subtitle}</h2>
-                        <button>See More</button>
+                {/* Content  */}
+                <div className={styles.header}>
+                    <div className={styles.headerContent}>
+                        <h1 className={styles.title}>{title}</h1>
+                        <div className={styles.subtitle}>
+                            <h2 >{subtitle}</h2>
+                        </div>
                     </div>
+                </div>
+
+                {/* Background */}
+                <div className={styles.background}>
+
+                    <div className={styles.collumn}></div>
+                    <div className={styles.collumn + " down"}></div>
+                    <div className={styles.collumn}></div>
+                    <div className={styles.collumn + " down"}></div>
+                    <div className={styles.collumn}></div>
+                    <div className={styles.collumn + " down"}></div>
+                    <div className={styles.collumn}></div>
+                    <div className={styles.collumn + " down"}></div>
+
+
                 </div>
             </div>
         </>

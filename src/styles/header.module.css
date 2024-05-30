@@ -1,3 +1,9 @@
+.headerContianer{
+    position: fixed;
+    z-index: -1;
+    pointer-events: none;
+}
+
 .header{
     width: 100vw;
     height: 95vh;
@@ -10,13 +16,14 @@
     justify-items: center;
     color: white;
     height: 100%;
+    pointer-events: none;
 }
 
 .title{
     align-self: end;
     font-weight: bold;
     font-size: 80px;
-    text-shadow: rebeccapurple 0px 0px 10px;
+    text-shadow: cyan 0px 0px 10px;
 }
 
 .subtitle{
@@ -29,10 +36,11 @@
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px aquamarine;
+    pointer-events: all;
 }
 
 .background{
-    z-index: -1;
+    z-index: -2;
     position: absolute;
     top: 0;
     left: 0;
