@@ -15,7 +15,7 @@ export default function MaxIdSection({user} : {user: any}) {
           <h1>Max ID</h1>
           <p>One Account. All Projects.</p>
           <div className={styles.accountchip}>
-              <img className={styles.userimgage} src={user ? user.profileImageUrl : "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yaEFQR3hCUTFmV1NyQnlvSkRGaVlzNXd4aVEiLCJyaWQiOiJ1c2VyXzJoRGtNSnBVMTRHTGVIanBHZTV0WWVGS1RMNiJ9"} alt="User"/>
+              <img className={styles.userimgage} src={user ? user.imageUrl : "https://img.clerk.com/eyJ0eXBlIjoiZGVmYXVsdCIsImlpZCI6Imluc18yaEFQR3hCUTFmV1NyQnlvSkRGaVlzNXd4aVEiLCJyaWQiOiJ1c2VyXzJoRGtNSnBVMTRHTGVIanBHZTV0WWVGS1RMNiJ9"} alt="User"/>
               {user ? user.fullName : "Not Signed In"}
           </div>
         </div>

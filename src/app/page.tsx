@@ -1,4 +1,3 @@
-"use client";
 import Image from 'next/image'
 import Header from "@/components/header";
 import {project} from "@/lib/projects";
@@ -6,11 +5,10 @@ import {MouseBlob} from "@/components/blob";
 import styles from "@/styles/page.module.css";
 import MaxIdSection from "@/components/maxid";
 import {currentUser, User} from "@clerk/nextjs/server";
-import {useEffect, useState} from "react";
 
-export default function Home() {
+export default async function Home() {
 
-    const [user, setUser] = useState<User | null>(null)
+    const user = await currentUser();
 
     const getData = () => {
 
@@ -29,16 +27,7 @@ export default function Home() {
 
     const data = getData()
 
-    useEffect(() => {
-
-        // Get the user account
-        currentUser().then((user) => {
-            setUser(user)
-        })
-
-    }, [])
-
-    return(
+    return (
         <>
 
 
