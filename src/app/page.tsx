@@ -1,10 +1,16 @@
+"use client";
 import Image from 'next/image'
 import Header from "@/components/header";
 import {project} from "@/lib/projects";
 import {MouseBlob} from "@/components/blob";
 import styles from "@/styles/page.module.css";
+import MaxIdSection from "@/components/maxid";
+import {currentUser, User} from "@clerk/nextjs/server";
+import {useEffect, useState} from "react";
 
 export default function Home() {
+
+    const [user, setUser] = useState<User | null>(null)
 
     const getData = () => {
 
@@ -23,6 +29,15 @@ export default function Home() {
 
     const data = getData()
 
+    useEffect(() => {
+
+        // Get the user account
+        currentUser().then((user) => {
+            setUser(user)
+        })
+
+    }, [])
+
     return(
         <>
 
@@ -34,53 +49,20 @@ export default function Home() {
             {/* Site Content */}
             <div className={styles.content}>
 
-                {/* Websites */}
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
-                <p>BLAH</p>
+                {/* Max ID */}
+                <MaxIdSection user={user}/>
 
-                {/* Games */}
+                {/* Projects */}
+                <p>Projects</p>
 
-                {/* Other Projects */}
+                {/* Previous Employment */}
+                <p> Employment</p>
 
                 {/* Contact */}
+                <p>Contact</p>
 
                 {/* Footer */}
+                <p>Footer</p>
 
             </div>
         </>

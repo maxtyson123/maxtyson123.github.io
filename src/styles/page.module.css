@@ -5,6 +5,6 @@
 }
 
 .content{
-    background: black;
+    background: linear-gradient(0deg, #000000 0%, #111111 100%);
     color: white;
 }
