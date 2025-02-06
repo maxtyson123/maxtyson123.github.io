@@ -60,9 +60,15 @@ export async function POST(request: any) {
         // Update the URL.
         // This example uses a simple UPDATE. You might want to restrict which row is updated
         // (for example, by id) or do an UPSERT if no record exists.
-        const updateQuery = 'UPDATE mono_deal_tcp SET url = $1';
-        await client.query(updateQuery, [url]);
-        client.release();
+        try {
+            const updateQuery = 'UPDATE mono_deal_tcp SET url = $1';
+            await client.query(updateQuery, [url]);
+            client.release();
+        } catch (error) {
+            client.release();
+            return NextResponse.json({ error: 'Error updating URL' }, { status: 500 });
+        }
+
 
         return NextResponse.json({ message: 'URL updated successfully.' });
     } catch (error) {
