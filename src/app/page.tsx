@@ -5,6 +5,8 @@ import {MouseBlob} from "@/components/blob";
 import styles from "@/styles/page.module.css";
 import MaxIdSection from "@/components/maxid";
 import {currentUser, User} from "@clerk/nextjs/server";
+import {Employment} from "@/components/employment";
+import {Me} from "@/components/me";
 
 export default async function Home() {
 
@@ -45,10 +47,10 @@ export default async function Home() {
                 <p>Projects</p>
 
                 {/* Previous Employment */}
-                <p> Employment</p>
+                <Employment/>
 
                 {/* Contact */}
-                <p>Contact</p>
+                <Me/>
 
                 {/* Footer */}
                 <p>Footer</p>
